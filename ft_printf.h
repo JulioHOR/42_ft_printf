@@ -6,7 +6,7 @@
 /*   By: juhenriq <dev@juliohenrique.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 21:34:09 by juhenriq          #+#    #+#             */
-/*   Updated: 2025/01/14 21:18:03 by juhenriq         ###   ########.fr       */
+/*   Updated: 2025/01/15 03:11:16 by juhenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdlib.h>
 # include <stdarg.h>
-# include <stdio.h> // REMOVA JESUS DO CRISTO PAI AMADO DE TODOS OS SERES VIVOS
 # include <unistd.h>
 # include <stdint.h>
 # include "libft/libft.h"

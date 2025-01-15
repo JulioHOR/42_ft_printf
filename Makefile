@@ -6,7 +6,7 @@
 #    By: juhenriq <dev@juliohenrique.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/13 23:02:41 by juhenriq          #+#    #+#              #
-#    Updated: 2025/01/14 20:02:03 by juhenriq         ###   ########.fr        #
+#    Updated: 2025/01/15 03:10:57 by juhenriq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ $(NAME): $(OBJS)
 	cp $(LIBFT) $(NAME)
 	ar rcs $(NAME) $(OBJS)
 
-%.o: %.c
+%.o: %.c ft_printf.h libft/libft.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
