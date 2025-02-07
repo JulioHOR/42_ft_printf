@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_logic_utils.c                               :+:      :+:    :+:   */
+/*   printf_logic_utils_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juhenriq <dev@juliohenrique.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 18:26:45 by juhenriq          #+#    #+#             */
-/*   Updated: 2025/01/14 21:15:02 by juhenriq         ###   ########.fr       */
+/*   Updated: 2025/02/01 03:32:05 by juhenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf_bonus.h"
 
 void	flags_check(char character, t_fmt_spec *tfmt_spec)
 {
+	if (tfmt_spec->data_type == TYPE_PERCENT_SIGN)
+		return ;
 	if (character == '-')
 		tfmt_spec->flags.alignment = 1;
-	if (character == '0')
-		tfmt_spec->flags.fill_zero = 1;
 	if (character == '.')
 		tfmt_spec->flags.precision = 1;
 	if (character == '#')
@@ -25,7 +25,7 @@ void	flags_check(char character, t_fmt_spec *tfmt_spec)
 	if (character == '+')
 		tfmt_spec->flags.force_plus_sign = 1;
 	if (character == ' ')
-		tfmt_spec->flags.insert_spaces = 1;
+		tfmt_spec->flags.insert_space = 1;
 }
 
 static int	data_type_check(char character, t_fmt_spec *tfmt_spec)
@@ -55,7 +55,7 @@ static int	data_type_check(char character, t_fmt_spec *tfmt_spec)
 	return (0);
 }
 
-int	determine_data_type(t_fmt_spec	*tfmt_spec, const char *string, \
+int	determine_data_type(t_fmt_spec	*tfmt_spec, const char *string,
 	int i)
 {
 	while (string[i])
@@ -63,6 +63,11 @@ int	determine_data_type(t_fmt_spec	*tfmt_spec, const char *string, \
 		if (data_type_check(string[i], tfmt_spec))
 		{
 			tfmt_spec->end_idx = i;
+			tfmt_spec->orig_fmt_spec_str = ft_substr(
+					string, tfmt_spec->start_idx,
+					tfmt_spec->end_idx - tfmt_spec->start_idx + 1);
+			if (!(tfmt_spec->orig_fmt_spec_str))
+				return (1);
 			return (0);
 		}
 		i++;

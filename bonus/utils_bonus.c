@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juhenriq <dev@juliohenrique.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 21:24:01 by juhenriq          #+#    #+#             */
-/*   Updated: 2025/01/14 19:07:38 by juhenriq         ###   ########.fr       */
+/*   Updated: 2025/01/30 01:36:16 by juhenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf_bonus.h"
 
 int	ft_printf_free_everything(t_input **input_str)
 {
@@ -24,6 +24,7 @@ int	ft_printf_free_everything(t_input **input_str)
 	{
 		next_fmt_spec = curr_fmt_spec->next_fmt_spec;
 		free(curr_fmt_spec->out_cont);
+		free(curr_fmt_spec->orig_fmt_spec_str);
 		free(curr_fmt_spec);
 		curr_fmt_spec = next_fmt_spec;
 	}
@@ -59,24 +60,31 @@ t_fmt_spec	*create_fmt_specifier(int fmt_start_idx)
 	if (!(newest_fmt_node))
 		return (NULL);
 	newest_fmt_node->start_idx = fmt_start_idx;
-	newest_fmt_node->output_content_len = -1;
+	newest_fmt_node->out_cont = NULL;
+	newest_fmt_node->orig_fmt_spec_str = NULL;
 	newest_fmt_node->next_fmt_spec = NULL;
+	newest_fmt_node->out_cont_len = -1;
 	newest_fmt_node->flags.alignment = 0;
 	newest_fmt_node->flags.fill_zero = 0;
 	newest_fmt_node->flags.precision = 0;
 	newest_fmt_node->flags.prefixe = 0;
 	newest_fmt_node->flags.force_plus_sign = 0;
-	newest_fmt_node->flags.insert_spaces = 0;
+	newest_fmt_node->flags.insert_space = 0;
+	newest_fmt_node->flags.field_width = 0;
 	return (newest_fmt_node);
 }
 
-int	find_char(const char *str, char target_char, int start)
+int	find_char(const char *str, char target_char, int start_idx)
 {
-	int	i;
+	size_t	i;
+	size_t	local_start;
 
-	i = start;
-	if (!(str))
+	if (!(str) || start_idx < 0)
 		return (-1);
+	local_start = (size_t) start_idx;
+	if (local_start > ft_strlen(str) - 1)
+		return (-1);
+	i = local_start;
 	while (str[i])
 	{
 		if (str[i] == target_char)

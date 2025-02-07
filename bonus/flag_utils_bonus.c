@@ -1,18 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   to_string_int.c                                    :+:      :+:    :+:   */
+/*   flag_utils_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juhenriq <dev@juliohenrique.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/12 00:00:34 by juhenriq          #+#    #+#             */
-/*   Updated: 2025/01/14 18:48:43 by juhenriq         ###   ########.fr       */
+/*   Created: 2025/02/01 03:49:13 by juhenriq          #+#    #+#             */
+/*   Updated: 2025/02/01 03:50:00 by juhenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf_bonus.h"
 
-void	to_string_int(t_fmt_spec *tfmt_spec, int integer)
+int	contains_nil(char *str)
 {
-	tfmt_spec->out_cont = (ft_itoa(integer));
+	size_t	str_len;
+	size_t	i;
+	size_t	j;
+	char	*nil_str;
+
+	nil_str = "(nil)";
+	str_len = ft_strlen(str);
+	if (ft_strlen(str) < 5)
+		return (0);
+	i = 0;
+	j = 0;
+	while (i < str_len && j < 5)
+	{
+		if (str[i] == nil_str[j] && j + 1 <= 5)
+			j++;
+		if (j == 5)
+			return (1);
+		i++;
+	}
+	return (0);
 }

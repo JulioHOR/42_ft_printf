@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   flag_fill_zero_utils_bonus.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juhenriq <dev@juliohenrique.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 20:33:57 by juhenriq          #+#    #+#             */
-/*   Updated: 2025/01/18 02:13:16 by juhenriq         ###   ########.fr       */
+/*   Created: 2025/01/30 20:24:53 by juhenriq          #+#    #+#             */
+/*   Updated: 2025/02/01 03:39:29 by juhenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "ft_printf_bonus.h"
 
-size_t	ft_strlen(const char *s)
+int	get_ptr_modifier(t_fmt_spec *tfmt_spec)
 {
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
+	if (tfmt_spec->data_type == TYPE_POINTER)
+		return (2);
+	else
+		return (0);
 }

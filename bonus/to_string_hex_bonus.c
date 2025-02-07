@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   to_string_char.c                                   :+:      :+:    :+:   */
+/*   to_string_hex_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juhenriq <dev@juliohenrique.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/11 06:33:22 by juhenriq          #+#    #+#             */
-/*   Updated: 2025/01/14 18:48:43 by juhenriq         ###   ########.fr       */
+/*   Created: 2025/01/13 20:05:52 by juhenriq          #+#    #+#             */
+/*   Updated: 2025/01/16 20:37:32 by juhenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf_bonus.h"
 
-void	to_string_char(t_fmt_spec *tfmt_spec, char c)
+void	to_string_hex(t_fmt_spec *tfmt_spec, uint64_t nb, int case_flag, \
+	int hex_or_ptr)
 {
-	char	*str;
-
-	str = (char *) malloc(sizeof(c) + 1);
-	if (!(str))
+	if (hex_or_ptr)
+		tfmt_spec->out_cont = unsigned_ptr_int_to_hex(nb, 0);
+	else
 	{
-		tfmt_spec->out_cont = NULL;
-		return ;
+		if (case_flag)
+			tfmt_spec->out_cont = unsigned_hex_int_to_hex(nb, 1);
+		else
+			tfmt_spec->out_cont = unsigned_hex_int_to_hex(nb, 0);
 	}
-	str[0] = c;
-	str[1] = '\0';
-	tfmt_spec->out_cont = str;
 }

@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   to_string_char_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juhenriq <dev@juliohenrique.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 20:33:57 by juhenriq          #+#    #+#             */
-/*   Updated: 2025/01/18 02:13:16 by juhenriq         ###   ########.fr       */
+/*   Created: 2025/01/11 06:33:22 by juhenriq          #+#    #+#             */
+/*   Updated: 2025/01/18 02:48:15 by juhenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "ft_printf_bonus.h"
 
-size_t	ft_strlen(const char *s)
+void	to_string_char(t_fmt_spec *tfmt_spec, char c)
 {
-	size_t	i;
+	char	*str;
 
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
+	str = (char *) malloc(sizeof(c) + 1);
+	if (!(str))
+	{
+		tfmt_spec->out_cont = NULL;
+		return ;
+	}
+	str[0] = c;
+	str[1] = '\0';
+	tfmt_spec->out_cont = str;
 }

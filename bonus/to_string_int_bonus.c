@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   to_string_int_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juhenriq <dev@juliohenrique.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 20:33:57 by juhenriq          #+#    #+#             */
-/*   Updated: 2025/01/18 02:13:16 by juhenriq         ###   ########.fr       */
+/*   Created: 2025/01/12 00:00:34 by juhenriq          #+#    #+#             */
+/*   Updated: 2025/01/24 20:21:31 by juhenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "ft_printf_bonus.h"
 
-size_t	ft_strlen(const char *s)
+void	to_string_int(t_fmt_spec *tfmt_spec, int integer)
 {
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
+	tfmt_spec->out_cont = (ft_itoa(integer));
 }

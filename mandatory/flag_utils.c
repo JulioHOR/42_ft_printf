@@ -1,23 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   flag_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juhenriq <dev@juliohenrique.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 20:33:57 by juhenriq          #+#    #+#             */
-/*   Updated: 2025/01/18 02:13:16 by juhenriq         ###   ########.fr       */
+/*   Created: 2025/02/01 03:49:13 by juhenriq          #+#    #+#             */
+/*   Updated: 2025/02/01 04:29:36 by juhenriq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "ft_printf.h"
 
-size_t	ft_strlen(const char *s)
+int	contains_nil(char *str)
 {
+	size_t	str_len;
 	size_t	i;
+	size_t	j;
+	char	*nil_str;
 
+	nil_str = "(nil)";
+	str_len = ft_strlen(str);
+	if (ft_strlen(str) < 5)
+		return (0);
 	i = 0;
-	while (s[i] != '\0')
+	j = 0;
+	while (i < str_len && j < 5)
+	{
+		if (str[i] == nil_str[j] && j + 1 <= 5)
+			j++;
+		if (j == 5)
+			return (1);
 		i++;
-	return (i);
+	}
+	return (0);
 }
